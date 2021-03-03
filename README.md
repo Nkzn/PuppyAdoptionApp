@@ -5,9 +5,9 @@ Android Dev Challenge: lift off with Jetpack Compose, Week #1 - Puppy adoption a
 
 https://android-developers.googleblog.com/2021/02/android-dev-challenge-lift-off-with.html
 
-![list](./misc/list.png)
-
-![detail](./misc/detail.png)
+| list | detail |
+|------|--------|
+| ![list](./misc/list.png) | ![detail](./misc/detail.png) |
 
 Thunks
 ----------
