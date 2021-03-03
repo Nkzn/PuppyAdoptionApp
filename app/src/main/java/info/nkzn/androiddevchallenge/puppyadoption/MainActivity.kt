@@ -3,11 +3,11 @@ package info.nkzn.androiddevchallenge.puppyadoption
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import info.nkzn.androiddevchallenge.puppyadoption.ui.PuppiesListScreen
+import info.nkzn.androiddevchallenge.puppyadoption.ui.PuppyDetailScreen
 import info.nkzn.androiddevchallenge.puppyadoption.ui.theme.PuppyAdoptionAppTheme
 
 class MainActivity : AppCompatActivity() {
@@ -15,24 +15,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PuppyAdoptionAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = "list") {
+                    composable("list") { PuppiesListScreen(navController) }
+                    composable("detail/{puppyId}") { backStackEntry ->
+                        val puppyId = backStackEntry.arguments?.getString("puppyId")
+                        PuppyDetailScreen(navController, puppyId)
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    PuppyAdoptionAppTheme {
-        Greeting("Android")
     }
 }
